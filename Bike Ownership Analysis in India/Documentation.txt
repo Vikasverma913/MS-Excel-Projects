@@ -1,0 +1,77 @@
+The project is of creating a dashboard for bike sales analysis.
+
+The Dataset has the following columns: -
+1. ID
+2. Martial Status
+3. Income
+4. Children
+5. Education
+6. Occupation
+7. Home Owner
+8. Cars
+9. Commute Distance
+10. Region
+11. Age
+12. Purchased Bike (Yes/No?)
+13. Gender
+
+However, the data was for the US market so some adjustments were done to the data:
+
+	The currency format was changed from USD to INR, and Income levels were multipled by 10 to make it more realistic in the 
+	Indian context. To multiply the income levels by 10 in all cells, one cell was taken as reference and multiplied by 10, 
+	and then the formula was applied to all cells at once. Then the new entries were pasted upon the old entries.
+	
+	The commute distance was listed in Miles, so it was changed to kilometers. To do this 'Ctrl + H' was used to find all the entries 
+	of 'Miles' and then it was replaced by 'Km'.
+	
+	The Region was listed as 'Pacific, Europe and North America' so it was changed to 'North India, South India, East India,West India 
+	and North East India' using the following formula:
+	'=CHOOSE(RANDBETWEEN(1,5), "North India", "South India", "East India", "West India", "North East India")'
+
+For this project, three new sheets were created: 
+1. Working sheet so that the original data remains untouched
+2. A Pivot Table
+3. A Dashboard
+
+STEP 1: - PERFORMING DATA CLEANING
+Apply filters
+
+Remove Duplicates (13 duplicate entries were found and deleted)
+
+Now the entries in the column 'Martial Status' and 'Gender' contains entries in the form of 'M&S for Married and Single'
+and 'M&F for Male and Female' respectively. This could create confusion as both the columns uses 'M' to denote different variables.
+So, we change these entries to 'Married and Single' and 'Male and Female', using the 'Ctrl + H' to 'Find and Replace'
+
+Next, age was given in discrete numbers, but it would be better if they are grouped into categories so that it becomes easier to 
+summarise and analyse data. So, using the IF statement we grouped the various ages into three categories:
+ - Adolescent
+ - Middle Aged
+ - Old
+The formula used was: "=IF(L9>55, "Old",IF(L9>=31,"Middle Aged",IF(L9<31,"Adolescent","Invalid")))"
+
+DATA CLEANING IS DONE AND NOW THE DATASET IS READY FOR ANALYSIS
+
+STEP 2: - PERFORMING DATA ANALYSIS USING PIVOT TABLES
+
+To find out the average income of people who purchases or do not purchase a bike, we will use the income column (putting it into the 
+value field in thepivot table and changing the value field to calculate average). We would also like to separate them on the basis 
+of gender so we will put also use the 'gender' column (putting it into the rows field in the pivot table). Then we will put the column 
+'bike purchase' in the columns field of the pivot table.
+
+Next, find that whether the commuting distance affect bike purchase decision for the consumer?
+So, put the column 'commute distance' in the rows field of the pivot table. Then we will put the 'purchase bike' column in both the
+Values and Columns field of the pivot table.
+
+Next, find that whether the age of the consumer affect bike purchase decision?
+So, put 'Purchase Bike' Column into the Columns and Values field of the Pivot Table, and put the column 'Age Bracket' into the
+Rows field of the Pivot Table.
+
+Next, find the relationship between Occupation and Bike Ownership.
+So, put 'Purchase Bike' Column into the Columns and Values field of the Pivot Table, and put the column 'Occupation' into the
+Rows field of the Pivot Table.
+
+Next, find the relationship between Region and Bike Ownership.
+So, put 'Purchase Bike' Column into the Columns and Values field of the Pivot Table, and put the column 'Region' into the
+Rows field of the Pivot Table.
+
+Finally, some slicers are added so that the data can be tweaked and analysed from different perspectives.
